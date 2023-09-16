@@ -1,0 +1,29 @@
+version: "3.3"
+services:
+
+  backend:
+    image: 'sql_convert_backend:latest'
+    build:
+      context: ./backend
+      dockerfile: backend.dockerfile
+    networks:
+      - sql_convert_network
+    ports:
+      - "8000:8000"
+  
+  frontend:
+    image: 'sql_convert_frontend:latest'
+    build:
+      context: ./frontend
+      dockerfile: frontend.dockerfile
+    networks:
+      - sql_convert_network
+    ports:
+      - "80:3000"
+
+volumes:
+  app-db-data:
+
+networks:
+  sql_convert_network:
+    external: true

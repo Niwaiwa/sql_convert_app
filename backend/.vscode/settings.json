@@ -1,0 +1,10 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "sql_convert_tool",
+            "database": "${workspaceFolder:backend}/sql_convert_tool.db"
+        }
+    ]
+}
