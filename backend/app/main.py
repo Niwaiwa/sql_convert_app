@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends, Query
+from fastapi.middleware.cors import CORSMiddleware
 from sqlite3 import Connection
 
 from app.crud import CRUDSqlConvertTool
@@ -9,6 +10,12 @@ from app.core.deps import create_table, db_connect
 create_table()
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=['X-Requested-With', 'X-Request-ID', 'Content-Type', 'Accept', 'Authorization'],
+    expose_headers=['X-Request-ID'])
 
 
 @app.get("/")
