@@ -26,7 +26,7 @@ jobs:
             git clone https://github.com/Niwaiwa/sql_convert_app.git
             cd sql_convert_app &&
             echo "NEXT_PUBLIC_BACKEND_URL=http://$REMOTE_HOST:8000" > ./frontend/.env &&
-            sudo docker compose down --rmi all --volumes --remove-orphans &&
+            sudo docker compose down --volumes --remove-orphans &&
             sudo docker compose up -d --build
               '
           # cd /home/ubuntu
