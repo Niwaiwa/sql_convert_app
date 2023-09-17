@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
     - name: test env
       env:
         SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
@@ -19,7 +19,7 @@ jobs:
         TARGET: ${{ secrets.TARGET_DIR }}
       run: |
         echo "$SSH_PRIVATE_KEY" > private_key && chmod 600 private_key
-        ssh -T git@github.com -o StrictHostKeyChecking=no -i private_key ${REMOTE_USER}@${REMOTE_HOST} '
+        ssh -o StrictHostKeyChecking=no -i private_key ${REMOTE_USER}@${REMOTE_HOST} '
             # Now we have got the access of EC2 and we will start the deploy .
             cd /home/ubuntu &&
             rm -rf ./sql_convert_app &&
