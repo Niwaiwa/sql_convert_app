@@ -19,13 +19,14 @@ jobs:
         TARGET: ${{ secrets.TARGET_DIR }}
       run: |
         echo "$SSH_PRIVATE_KEY" > private_key && chmod 600 private_key
-        ssh -o StrictHostKeyChecking=no -i private_key "$REMOTE_USER@$REMOTE_HOST" '
+        BACKEND_HOST="$REMOTE_HOST" ssh -o StrictHostKeyChecking=no -i private_key "$REMOTE_USER@$REMOTE_HOST" '
             # Now we have got the access of EC2 and we will start the deploy .
             cd /home/ubuntu &&
+            echo $BACKEND_HOST &&
             rm -rf ./sql_convert_app &&
             git clone https://github.com/Niwaiwa/sql_convert_app.git &&
             cd sql_convert_app &&
-            echo "NEXT_PUBLIC_BACKEND_URL=http://$REMOTE_HOST:8000" > ./frontend/.env &&
+            echo "NEXT_PUBLIC_BACKEND_URL=http://$BACKEND_HOST:8000" > ./frontend/.env &&
             sudo docker compose down --volumes --remove-orphans &&
             sudo docker compose up -d --build
               '
