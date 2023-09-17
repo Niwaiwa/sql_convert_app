@@ -25,8 +25,8 @@ jobs:
             rm -rf ./sql_convert_app &&
             git clone https://github.com/Niwaiwa/sql_convert_app.git
             cd sql_convert_app &&
-            sudo docker-compose down --rmi all --volumes --remove-orphans &&
-            sudo docker-compose up -d --build
+            sudo docker compose down --rmi all --volumes --remove-orphans &&
+            sudo docker compose up -d --build
               '
           # cd /home/ubuntu
           # rm -rf ./sql_convert_app
