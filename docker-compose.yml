@@ -26,4 +26,3 @@ volumes:
 
 networks:
   sql_convert_network:
-    external: true
