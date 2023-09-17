@@ -18,18 +18,18 @@ jobs:
       run: |
         echo "$REMOTE_HOST"
 
-    - name: Deploy to Server 1
-      uses: easingthemes/ssh-deploy@main
-      with:
-        SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-        REMOTE_HOST: ${{ secrets.HOST_DNS }}
-        REMOTE_USER: ${{ secrets.USERNAME }}
-        TARGET: ${{ secrets.TARGET_DIR }}
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-        REMOTE_HOST: ${{ secrets.HOST_DNS }}
-        REMOTE_USER: ${{ secrets.USERNAME }}
-        TARGET: ${{ secrets.TARGET_DIR }}
+    # - name: Deploy to Server 1
+    #   uses: easingthemes/ssh-deploy@main
+    #   with:
+    #     SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+    #     REMOTE_HOST: ${{ secrets.HOST_DNS }}
+    #     REMOTE_USER: ${{ secrets.USERNAME }}
+    #     TARGET: ${{ secrets.TARGET_DIR }}
+    #   env:
+    #     SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+    #     REMOTE_HOST: ${{ secrets.HOST_DNS }}
+    #     REMOTE_USER: ${{ secrets.USERNAME }}
+    #     TARGET: ${{ secrets.TARGET_DIR }}
         
     - name: Executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@master
@@ -39,5 +39,8 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
           cd /home/ubuntu
+          rm -rf ./sql_convert_app
+          git clone https://github.com/Niwaiwa/sql_convert_app.git
+          cd sql_convert_app
           docker-compose down --rmi all --volumes --remove-orphans
           docker-compose up -d --build
