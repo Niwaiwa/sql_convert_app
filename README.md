@@ -137,3 +137,25 @@ http://<EC2インスタンスのパブリックIPアドレス>/
 ```
 $ docker-compose down --rmi all --volumes --remove-orphans
 ```
+
+## テスト実行方法 (ローカル環境を使う場合)
+
+### 1. ディレクトリに移動する
+
+```
+$ cd backend
+```
+
+### 2. テストを実行する
+
+```
+$ pytest
+```
+
+## テスト実行方法 (docker-composeを使う場合)
+
+### 1. docker-compose.ymlを元にコンテナを起動する
+
+```
+$ docker-compose -f docker-compose.test.yml up --build
+```
