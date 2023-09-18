@@ -84,41 +84,35 @@ http://<EC2インスタンスのパブリックIPアドレス>/
 
 ### 2. EC2インスタンスに接続する
 
-### 3. gitをインストールする
-
-```
-$ sudo yum install git
-```
-
-### 4. リポジトリをクローンする
+### 3. リポジトリをクローンする
 
 ```
 $ git clone　
 ```
 
-### 5. ディレクトリに移動する
+### 4. ディレクトリに移動する
 
 ```
 $ cd sql_convert_app
 ```
 
-### 6. dockerをインストールする
+### 5. dockerをインストールする
 
 * [Dockerのインストール](https://docs.docker.com/engine/install/ubuntu/)
 
-### 7. docker-compose.ymlを元にコンテナを起動する
+### 6. docker-compose.ymlを元にコンテナを起動する
 
 ```
 $ docker compose up -d --build
 ```
 
-### 8. docker compose psでコンテナが起動していることを確認する
+### 7. docker compose psでコンテナが起動していることを確認する
 
 ```
 $ docker compose ps
 ```
 
-### 9. ブラウザでアクセスする
+### 8. ブラウザでアクセスする
 
 このURLにアクセスする
 
@@ -132,7 +126,7 @@ http://localhost/
 http://<EC2インスタンスのパブリックIPアドレス>/
 ```
 
-### 10. コンテナを停止＆削除する
+### 9. コンテナを停止＆削除する
 
 ```
 $ docker-compose down --rmi all --volumes --remove-orphans
@@ -159,3 +153,7 @@ $ pytest
 ```
 $ docker-compose -f docker-compose.test.yml up --build
 ```
+
+## アーキテクチャ
+
+![アーキテクチャ](app_achitecture.drawio.png)
